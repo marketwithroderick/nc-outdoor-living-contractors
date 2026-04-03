@@ -1,29 +1,7 @@
 ---
-import { readFile } from 'fs/promises';
-import type { AstroComponentFactory } from 'astro';
 import Layout from '../layouts/Layout.astro';
 import ContractorCard from '../components/ContractorCard.astro';
-
-interface Contractor {
-  id: string;
-  name: string;
-  location: string;
-  region: string;
-  services: string[];
-  phone: string;
-  email: string;
-  website: string;
-  rating: number;
-  reviews: number;
-  description: string;
-}
-
-let contractors: Contractor[] = [];
-
-// Load static JSON at build time
-const dataPath = new URL('../data/contractors.json', import.meta.url);
-const raw = await readFile(dataPath, 'utf-8');
-contractors = JSON.parse(raw);
+import contractors from '../data/contractors.json';
 ---
 <Layout title="NC Outdoor Living Contractors Directory">
   <section class="max-w-6xl mx-auto py-12 px-6">
