@@ -1,0 +1,29 @@
+---
+interface Props {
+  contractor: {
+    id: string;
+    name: string;
+    location: string;
+    region: string;
+    services: string[];
+    phone: string;
+    email: string;
+    website: string;
+    rating: number;
+    reviews: number;
+    description: string;
+  };
+}
+const { contractor } = Astro.props;
+---
+<div class="border rounded-lg p-4 shadow-sm hover:shadow-md transition">
+  <h3 class="text-xl font-bold mb-2">{contractor.name}</h3>
+  <p class="text-sm text-gray-600 mb-1"><strong>Location:</strong> {contractor.location}</p>
+  <p class="text-sm text-gray-600 mb-1"><strong>Services:</strong> {contractor.services.join(", ")}</p>
+  <p class="text-sm text-gray-600 mb-1"><strong>Phone:</strong> {contractor.phone}</p>
+  <p class="text-sm text-gray-600 mb-1"><strong>Email:</strong> <a href={`mailto:${contractor.email}`} class="text-blue-600 hover:underline">{contractor.email}</a></p>
+  <p class="text-sm text-gray-600 mb-1"><strong>Website:</strong> <a href={contractor.website} target="_blank" rel="noopener" class="text-blue-600 hover:underline">{contractor.website}</a></p>
+  <p class="text-sm text-gray-600 mb-2"><strong>Rating:</strong> {contractor.rating} ⭐ ({contractor.reviews} reviews)</p>
+  <p class="text-gray-700 mb-3">{contractor.description}</p>
+  <a href="mailto:{contractor.email}?subject=Quote%20Request%20from%20Great%20Work%20Consulting" class="inline-block bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded">Request Quote</a>
+</div>
